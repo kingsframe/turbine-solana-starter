@@ -1,6 +1,12 @@
-import { Keypair, PublicKey, Connection, Commitment } from "@solana/web3.js";
-import { getOrCreateAssociatedTokenAccount, mintTo } from '@solana/spl-token';
-import wallet from "../wba-wallet.json"
+import {
+  Keypair,
+  PublicKey,
+  Connection,
+  Commitment,
+  LAMPORTS_PER_SOL,
+} from "@solana/web3.js";
+import { getOrCreateAssociatedTokenAccount, mintTo } from "@solana/spl-token";
+import wallet from "../wba-wallet.json";
 
 // Import our keypair from the wallet file
 const keypair = Keypair.fromSecretKey(new Uint8Array(wallet));
@@ -32,7 +38,7 @@ const mint = new PublicKey("9yhZSzPW9ZhTisLYvBGtrfjt5nLp24KXDJEnBYfjE34D");
       mint,
       ata.address,
       keypair.publicKey,
-      123456789
+      123456789 * LAMPORTS_PER_SOL
     );
     console.log(`Your mint txid: ${mintTx}`);
   } catch (error) {
